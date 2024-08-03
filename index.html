@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budapest Tour</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-image: url('https://assets.adac.de/image/upload/ar_16:9,c_fill,f_auto,g_auto,q_auto:eco,w_2000/v1/ADAC-eV/KOR/Bilder/RF/budapest-aufmacher-2210_iavumk');
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+      
+
+        .menu-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* 60% transparent */
+            padding-top: 60px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-links a {
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+        }
+
+        .menu-links a:hover {
+            text-decoration: underline;
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-icon div {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background-color: white;
+        }
+
+        .close-icon .line1 {
+            transform: rotate(45deg);
+        }
+
+        .close-icon .line2 {
+            transform: rotate(-45deg);
+        }
+
+        main {
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .conversion {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .conversion input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .conversion button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .captiionT1 {
+            text-align: left;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .map, .links {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .map {
+            height: 500px;
+        }
+        .containerFE {
+           text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border-color: bisque;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80px;
+        }
+
+        span {
+            font-size: 1.5em;
+        }
+    </style>
+</head>  
+
+<body>
+    <header>
+        <h1>Willkommen in Budapest</h1>
+    </header>
+    <main>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    
+        <div class="menu-links" id="menuLinks">
+            <div class="close-icon" onclick="toggleMenu()">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+            <a href="https://bellabudapest.com/de/budapest-in-3-tagen/" target="_blank">Budapest in 3 Tgen</a>
+            <a href="https://www.budapestbesuchen.de/" target="_blank">Weitere Infos zu Budapest</a>
+            <a href="Karte.html">Karte mit Sehenswürdigheiten</a>
+            <a href="https://www.2onthego.de/9-budapest-tipps/">Colle Tips abseits Turistenpfande</a>
+            <a href="https://ikono.global/de">Ikono Licht museum</a>
+        </div>
+       
+        <div class="containerFE">
+            <h1>Forint zu Euro Umrechner</h1>
+            <div class="input-group">
+                <label for="forint">Forint:</label>
+                <input type="number" id="forint" placeholder="Betrag in Forint">
+
+                <input type="text" id="euro" readonly placeholder="Betrag in Euro">
+            </div>
+        </div>
+        <script>
+            document.getElementById('forint').addEventListener('input', function() {
+                const forint = parseFloat(this.value);
+                const conversionRate = 0.0028; // Beispielumrechnungsrate
+                const euro = (forint * conversionRate).toFixed(2);
+                document.getElementById('euro').value = euro;
+            });
+        </script>
+            <table>
+                <caption class="captiionT1" ><h2>Wichtige Orte</h2></caption>
+                <thead>
+                    <tr>
+                        <<th>Ort</th>
+                        <th>Link zum Ort</th>
+                        <th>Weg Beschreibung aktuelle Position</th>
+                        <th>Beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td title="Die Große Synagoge in der Dohány utca, deutsch Tabakgasse, deshalb auch Tabaktempel genannt und die größte Synagoge in Europa">Dohány Synagoge</td>
+                        <td><a href="https://www.dohanysynagogue.com" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination= Synagoge in der Dohány utca target="_blank">Wegbeschreibung</a></td>
+                        <td>Die Große Synagoge in der Dohány utca, deutsch Tabakgasse, deshalb auch Tabaktempel genannt und die größte Synagoge in Europa.</td>
+                    </tr>
+                    <tr>
+                        <td title="Die Ungarische Staatsoper ist das größte Opernhaus Ungarns und eines der prachtvollsten Beispiele der Neorenaissance-Architektur">Ungarische Staatsoper</td>
+                        <td><a href="https://www.opera.hu/english/" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Ungarische+Staatsoper,+Andr%C3%A1ssy+%C3%BAt+22,+1061+Budapest,+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Die Ungarische Staatsoper ist das größte Opernhaus Ungarns und eines der prachtvollsten Beispiele der Neorenaissance-Architektur.</td>
+                    </tr>
+                    <tr>
+                        <td title="Die St.-Stephans-Basilika liegt am Szent István tér im Stadtteil Pest und ist seit ihrer Einweihung im Jahre 1905 die größte Kirche der ungarischen Hauptstadt Budapest und Konkathedrale des römisch-katholischen Erzbistums Esztergom-Budapest">St.-Stephans-Basilika</td>
+                        <td><a href="https://www.budapest.citysam.de/grosse-synagoge.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/St.-Stephans-Basilika,+Budapest,+Szent+Istv%C3%A1n+t%C3%A9r+1,+1051+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Die St.-Stephans-Basilika liegt am Szent István tér im Stadtteil Pest und ist seit ihrer Einweihung im Jahre 1905 die größte Kirche der ungarischen Hauptstadt Budapest und Konkathedrale des römisch-katholischen Erzbistums Esztergom-Budapest.</td>
+                    </tr>
+                    <tr>
+                        <td title="Sie ist die älteste und bekannteste der neun Budapester Straßenbrücken über die Donau">Kettenbrücke</td>
+                        <td><a href="http://www.budapest.citysam.de/kettenbruecke.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Kettenbr%C3%BCcke,+Budapest,+Sz%C3%A9chenyi+l%C3%A1nch%C3%ADd" target="_blank">Wegbeschreibung</a></td>
+                        <td>Sie ist die älteste und bekannteste der neun Budapester Straßenbrücken über die Donau.</td>
+                    </tr>
+                    <tr>
+                        <td title="Die Váci utca ist Budapests älteste und eleganteste Flaniermeile. Sie verläuft zwischen der Großen Markthalle in unmittelbarer Nähe zur Freiheitsbrücke und dem Vörösmarty-Platz">Flaniermeile Budapest</td>
+                        <td><a href="http://www.budapest.citysam.de/duna-plaza.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/V%C3%A1ci+utca,+Budapest,+V%C3%A1ci+utca,+1056+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Die Váci utca ist Budapests älteste und eleganteste Flaniermeile. Sie verläuft zwischen der Großen Markthalle in unmittelbarer Nähe zur Freiheitsbrücke und dem Vörösmarty-Platz.</td>
+                    </tr>
+                    <tr>
+                        <td title="Restaurierte neugotische Markthalle mit Ständen für Lebensmittel im Erdgeschoss und Souvenirs im 1. Stock. Erbaut 1903">Große Markthalle Budapest</td>
+                        <td><a href="https://www.centralmarket.hu/" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Gro%C3%9Fe+Markthalle+Budapest,+Budapest,+V%C3%A1mh%C3%A1z+k%C3%B6r%C3%BAt+1-3,+1093+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Restaurierte neugotische Markthalle mit Ständen für Lebensmittel im Erdgeschoss und Souvenirs im 1. Stock. Erbaut 1903.</td>
+                    </tr>
+                    <tr>
+                        <td title="Das ungarische Parlamentsgebäude, ein ikonisches Gebäude am Donauufer gelegen, zum Budapester Weltkulturerbe gehörend, ist Sitz der Legislative und Hüter der ungarischen Heiligen Krone">Parlamentsgebäude</td>
+                        <td><a href="https://www.budapest.citysam.de/ungarisches-parlament.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Parlamentsgeb%C3%A4ude,+Budapest,+Kossuth+Lajos+ter+1-3,+1055+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Das ungarische Parlamentsgebäude, ein ikonisches Gebäude am Donauufer gelegen, zum Budapester Weltkulturerbe gehörend, ist Sitz der Legislative und Hüter der ungarischen Heiligen Krone.</td>
+                    </tr>
+                    <tr>
+                        <td title="Seit 1870 fährt die Sikló, die historische Standseilbahn, vom Clark Adam tér auf einer 95 m langen Strecke zum 51 m höher gelegenen Szent-György-ter auf dem Burgberg">Burgberg Standseilbahn</td>
+                        <td><a href="https://maps.adac.de/poi/burgberg-standseilbahn-budapest-1" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Burgberg+Standseilbahn,+Budapest,+Clark+%C3%81d%C3%A1m+t%C3%A9r,+1013+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Seit 1870 fährt die Sikló, die historische Standseilbahn, vom Clark Adam tér auf einer 95 m langen Strecke zum 51 m höher gelegenen Szent-György-ter auf dem Burgberg.</td>
+                    </tr>
+                    <tr>
+                        <td title="Weltkulturerbe und Holocaust-Denkmal">Schuhe am Donauufer</td>
+                        <td><a href="https://www.budapestinfo.hu/de/schuhe-am-ufer-der-donau" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Schuhe+am+Donauufer,+Budapest,+Id.+Antall+J%C3%B3zsef+rkp.,+1054+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Weltkulturerbe und Holocaust-Denkmal.</td>
+                    </tr>
+                    <tr>
+                        <td title="Erkunden Sie die Budaer Burg mit unseren umweltfreundlichen Fahrzeugen! Unsere Elektrobusse, die von kompetenten Fahrern gelenkt werden, fahren durch das historische Burgviertel von Buda">Offizieller Budapester Burg-Bus</td>
+                        <td><a href="https://www.budapestinfo.hu/de/sehenswuerdigkeiten/budapester-burg-bus.html" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Burg-Bus,+Budapest,+Szentharomsag+ter+6,+1014+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Erkunden Sie die Budaer Burg mit unseren umweltfreundlichen Fahrzeugen! Unsere Elektrobusse, die von kompetenten Fahrern gelenkt werden, fahren durch das historische Burgviertel von Buda.</td>
+                    </tr>
+                    <tr>
+                        <td title="Die Matthiaskirche ist eine römisch-katholische Kirche der ungarischen Hauptstadt Budapest. Sie befindet sich am Dreifaltigkeitsplatz im Burgviertel auf der Budaer Seite der Stadt im Abschnitt der Fischerbastei und ist somit ein Teil des I. Stadtbezirks">Matthias-Kirche</td>
+                        <td><a href="https://www.budapest.citysam.de/matthiaskirche.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Matthias-Kirche,+Budapest,+Szentharomsag+ter+2,+1014+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Die Matthiaskirche ist eine römisch-katholische Kirche der ungarischen Hauptstadt Budapest. Sie befindet sich am Dreifaltigkeitsplatz im Burgviertel auf der Budaer Seite der Stadt im Abschnitt der Fischerbastei und ist somit ein Teil des I. Stadtbezirks.</td>
+                    </tr>
+                    <tr>
+                        <td title="Die Felsenkirche in der St. Stephan-Höhle auf dem Gellértberg kann man mit mehreren religiösen und geschichtlichen Ereignissen verbinden">Felsenkirche</td>
+                        <td><a href="https://www.budapestinfo.hu/de/die-felsenkirche" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Felsenkirche,+Budapest,+Szent+Gell%C3%A9rt+rkp.+1,+1111+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Die Felsenkirche in der St. Stephan-Höhle auf dem Gellértberg kann man mit mehreren religiösen und geschichtlichen Ereignissen verbinden.</td>
+                    </tr>
+                    <tr>
+                        <td title="Der Budapester Burgpalast, auch genannt die Budapester Burg, ist das größte Gebäude Ungarns und eine Sehenswürdigkeit der Hauptstadt Budapest. Es nimmt den gesamten Südteil des Burgviertels auf dem Burgberg ein">Burgpalast</td>
+                        <td><a href="http://www.ungarn.citysam.de/burgpalast.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Burgpalast,+Budapest,+Szent+Gy%C3%B6rgy+u.+2,+1014+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Der Budapester Burgpalast, auch genannt die Budapester Burg, ist das größte Gebäude Ungarns und eine Sehenswürdigkeit der Hauptstadt Budapest. Es nimmt den gesamten Südteil des Burgviertels auf dem Burgberg ein.</td>
+                    </tr>
+                    <tr>
+                        <td title="Museum für Lichtkunst! Sehen Sie aufregende Installationen und wegweisende Werke. LAM präsentiert moderne, zeitgenössische und historisch bedeutsame Kunst in einem unabhängigen Raum">Light Art Museum</td>
+                        <td><a href="www.lam.xyz" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Light+Art+Museum,+Budapest,+%C3%81rp%C3%A1d+fejedelem+%C3%BAtja+67,+1036+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Museum für Lichtkunst! Sehen Sie aufregende Installationen und wegweisende Werke. LAM präsentiert moderne, zeitgenössische und historisch bedeutsame Kunst in einem unabhängigen Raum.</td>
+                    </tr>
+                    <tr>
+                        <td title="Auf dem Heldenplatz in der ungarischen Hauptstadt Budapest dominiert das 36 Meter hohe Millenniumsdenkmal. Zu finden ist der Platz im Stadtteil Pest. Dort markiert er das Ende der Andrássy-Straße und ist das Tor zum Stadtwäldchen, das sich mit seinen Alleen direkt hinter dem Platz erstreckt">Heldenplatz</td>
+                        <td><a href="http://www.budapest.citysam.de/heldenplatz.htm" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Heldenplatz,+Budapest,+Hos%C3%B6k+tere,+1146+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Auf dem Heldenplatz in der ungarischen Hauptstadt Budapest dominiert das 36 Meter hohe Millenniumsdenkmal. Zu finden ist der Platz im Stadtteil Pest. Dort markiert er das Ende der Andrássy-Straße und ist das Tor zum Stadtwäldchen, das sich mit seinen Alleen direkt hinter dem Platz erstreckt.</td>
+                    </tr>
+                    <tr>
+                        <td title="Die Andrassy Ut ist ein 2,5 km langer Boulevard, der Budapests Innenstadt mit dem Heldenplatz verbindet. Gehört zum UNESCO Weltkulturerbe. Gesäumt wird die Prachtstraße von zahlreichen imposanten Gebäuden, Villen und Sehenswürdigkeiten">Andrássy út</td>
+                        <td><a href="https://wunderbaresungarn.de/sehenswuerdigkeiten/denkmaeler-und-statuen/die-andrassy-ut-andrassy-strasse/" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Andr%C3%A1ssy+%C3%BAt,+Budapest,+Andr%C3%A1ssy+%C3%BAt,+1061+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Die Andrassy Ut ist ein 2,5 km langer Boulevard, der Budapests Innenstadt mit dem Heldenplatz verbindet. Gehört zum UNESCO Weltkulturerbe. Gesäumt wird die Prachtstraße von zahlreichen imposanten Gebäuden, Villen und Sehenswürdigkeiten.</td>
+                    </tr>
+                    <tr>
+                        <td title="Museum für Lichtkunst! Sehen Sie aufregende Installationen und wegweisende Werke. LAM präsentiert moderne, zeitgenössische und historisch bedeutsame Kunst in einem unabhängigen Raum">Light Art Museum</td>
+                        <td><a href="www.lam.xyz" target="_blank">Link</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=+1075+Ungarn/Light+Art+Museum,+Budapest,+%C3%81rp%C3%A1d+fejedelem+%C3%BAtja+67,+1036+Ungarn" target="_blank">Wegbeschreibung</a></td>
+                        <td>Museum für Lichtkunst! Sehen Sie aufregende Installationen und wegweisende Werke. LAM präsentiert moderne, zeitgenössische und historisch bedeutsame Kunst in einem unabhängigen Raum.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Gozsdu udvar</td>
+                        <td><a href="https://www.gozsduudvar.hu/" target="_blank">Gozsdu udvar</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Gozsdu+udvar,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Nur 5 Minuten entfernt,Lebendiges Restaurantviertel mit vielfältiger Küche und Bars. Perfekt für einen Abend voller Genuss.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant N28</td>
+                        <td><a href="https://n28.hu/en/kezdolap-english/" target="_blank">Restaurant N28</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Restaurant+N28,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Stilvolles Ambiente und gehobene internationale Küche. Ideal für elegante Abendessen.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Szimpla Kert</td>
+                        <td><a href="https://szimpla.hu" target="_blank">Szimpla Kert</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Szimpla+Kert,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Kultiger Ruinenpub mit einzigartigem Flair und vielfältigen Getränken. Ein Muss für Nachtschwärmer.</td>
+                    </tr>
+                    <tr>
+                        <td>Kaffeehaus New York Palace</td>
+                        <td><a href="https://newyorkcafe.hu" target="_blank">Kaffeehaus New York Palace</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Kaffeehaus+New+York+Palace,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Elegantes Café im historischen Ambiente. Perfekt für Kaffee und Kuchen in einem prachtvollen Gebäude.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Paprika Vendéglő</td>
+                        <td><a href="https://paprikavendeglo.hu" target="_blank">Paprika Vendéglő</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Paprika+Vend%C3%A9gl%C5%91,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Rustikales Restaurant mit authentischen ungarischen Spezialitäten in großzügigen Portionen.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Barack és Szilva étterem</td>
+                        <td><a href="https://barackeszilva.hu" target="_blank">Barack és Szilva étterem</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Barack+%C3%A9s+Szilva+%C3%A9tterem,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Gemütliches Restaurant mit ungarischer Küche und freundlichem Service. Ideal für Familienessen.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Kisharang Étkezde</td>
+                        <td><a href="https://kisharang.hu" target="_blank">Kisharang Étkezde</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Kisharang+%C3%89tkezde,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Traditionelles ungarisches Restaurant mit hausgemachten Gerichten und familiärer Atmosphäre.</td>
+                    </tr>
+                    <tr>
+                        <td>Konditorei Kormuth</td>
+                        <td><a href="https://www.visitbratislava.com/de/setzt/konditorei-kormuth/" target="_blank">Konditorei Kormuth</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Konditorei+Kormuth,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Charmante Konditorei mit einer Auswahl an feinen Desserts und traditionellen ungarischen Gebäcken.</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Koliba Kamzík</td>
+                        <td><a href="https://zelena.kamzik.sk/en/" target="_blank">Koliba Kamzík</a></td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&destination=Koliba+Kamz%C3%ADk,+Budapest" target="_blank">Wegbeschreibung</a></td>
+                        <td>Gemütliches Restaurant im rustikalen Stil mit traditionellen ungarischen und slowakischen Gerichten.</td>
+                    </tr>      
+            </table>
+
+            <div class="map">
+                <h2>Orte</h2>
+                <!-- OpenStreetMap Integration -->
+                <div id="map" style="height: 80%;"></div>
+            </div>
+            <div class="links">
+                <h2>Wichtige Links</h2>
+                <ul>
+                    <li><a href="https://www.budapestbesuchen.de/" target="_blank">Weitere Infos zu Budapest</a></li>
+                    <li><a href="http://www.google.de/" target="_blank">Google</a></li>
+                    <li><a href="https://bellabudapest.com/de/budapest-in-3-tagen/" target="_blank">Budapest in 3 Tgen</a></li>
+                    <li><a href="https://ikono.global/de"></a>Ikono Licht museum</li>
+                    </ul>
+            </div>
+        </div>
+    </main>
+    <script>
+        function convertCurrency() {
+            const forint = document.getElementById('forint').value;
+            const euro = forint / 370; // Beispiel Umrechnungskurs
+            document.getElementById('result').textContent = `${forint} Forint sind ungefähr ${euro.toFixed(2)} Euro`;
+        }
+
+        // OpenStreetMap Initialisierung
+        function initMap() {
+            const map = L.map('map').setView([47.4979, 19.0402], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+     const locations = [
+{name: "Felsenkirche", coords: [47.48571058328409, 19.051852798323353]},
+
+{Name: "Burgpalast" , coords: [47.49620072901217, 19.039569420526647]},
+
+{name: "Sikló Standseilbahn", coords: [47.4981, 19.0408]},
+
+{name: "Parlamentsgebäude", coords: [47.5073, 19.0454] },
+
+{name: "Széchenyi Therme", coords: [47.518831628430206, 19.082379580534468]},
+
+{name: "Dohány Synagoge", coords: [47.49591217204948, 19.06058934816087]},
+
+{name: "Ungarische Staatsoper", coords: [47.50285240035206, 19.058368444302854]},
+
+{name: "Große Markthalle Budapest", coords: [47.487237022627525, 19.05845008172596]},
+
+{name: "Gozsdu udvar", coords: [447.49879307873405, 19.05948618238805]},
+
+{name: "Restaurant N28", coords: [47.504152321335944, 19.05922865289184]},
+
+{name: "Szimpla Kert", coords: [47.49711699398793, 19.063292252891507]},
+
+{name: "Barack és Szilva étterem", coords: [47.49804826259709, 19.0670780222125]},
+
+{name: "Kaffeehaus New York Palace", coords: [47.49891077722107, 19.070479062760725]},
+
+{name: "Kisharang Étkezde", coords: [47.50183830212945, 19.05086412471928]},
+
+{name: "Paprika Vendéglő", coords: [47.508991441970366, 19.083140292259326]},
+
+{name: "Museum für Lichtkunst", coords: [47.50499463630385, 19.05272451003158]},
+
+{name: "Die Andrassy Ut", coords: [47.5026741935895, 19.059271279188604]},
+
+{name: "Heldenplatz", coords: [47.51521862350056, 19.077903598560273]},
+
+{name: "Burg Vajdahunyad", coords: [47.51503446706783, 19.08307003555884]},
+
+{name: "Schuhe am Donauufer", coords: [47.504242618849446, 19.04484442951421]},
+
+{name: "Kettenbrücke", coords: [47.499108717187745, 19.043710134127]},
+
+{name: "Matthiaskirche", coords: [47.50227249777194, 19.03421538711075]},
+
+{ name: "Fischerbastei", coords: [47.502570410723216, 19.034759759566928]},
+
+{name: "St.-Stephans-Basilika", coords: [47.501180012271355, 19.053999471706373]}
+            ];
+
+            locations.forEach(location => {
+                L.marker(location.coords).addTo(map)
+                    .bindPopup(location.name);
+            });
+            // Hotel Icon
+        var hotelIcon = L.divIcon({
+            className: 'hotel-icon'
+        });
+
+        // Markierungen hinzufügen
+        locations.forEach(function(location) {
+            var marker = L.marker([location[1], location[2]], {
+                icon: location[0] === "Hotel Rombach Budapest" ? hotelIcon : defaultIcon
+            }).addTo(map);
+            marker.bindPopup(location[0]);
+        });
+        }
+       
+
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</body>
+</html>
