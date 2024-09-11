@@ -6,50 +6,74 @@
     <title>Budapest Reiseplan</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            color: #333;
         }
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
+            background-color: #00843D; /* Dunkelgrün - Ungarische Flagge */
+            color: white;
+            padding: 20px;
             text-align: center;
+            border-bottom: 5px solid #CE1126; /* Rot - Ungarische Flagge */
         }
         h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
         .container {
             width: 90%;
-            margin: 20px auto;
+            margin: 30px auto;
+        }
+        h2 {
+            color: #CE1126; /* Rot - Ungarische Flagge */
+            border-bottom: 3px solid #00843D;
+            padding-bottom: 5px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 40px;
-        }
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+            background-color: white;
         }
         table th {
-            background-color: #333;
+            background-color: #CE1126; /* Rot */
             color: white;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
         }
         table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
             background-color: #fff;
         }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table tr:hover {
+            background-color: #f8f9fa;
+        }
+        a {
+            color: #00843D; /* Grün */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
         footer {
-            background-color: #333;
+            background-color: #00843D; /* Dunkelgrün */
             color: white;
             text-align: center;
             padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 20px;
+            border-top: 5px solid #CE1126; /* Rot */
+        }
+        footer p {
+            margin: 0;
         }
         @media (max-width: 768px) {
             table, th, td {
@@ -57,7 +81,7 @@
                 width: 100%;
             }
             th {
-                background-color: #444;
+                background-color: #CE1126;
             }
             td {
                 background-color: #f4f4f4;
