@@ -26,7 +26,7 @@
         .menu-links {
             display: none;
             position: fixed;
-            top: 0;
+            top: 0; 
             right: 0;
             width: 200px;
             height: 100%;
@@ -90,7 +90,7 @@
             width: 100%;
         }
         .containerFE {
-           text-align: center;
+            text-align: center;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
@@ -113,6 +113,14 @@
         th {
             background-color: #f4f4f4;
         }
+        
+        .Link-List {
+          top: 5%;
+          margin-bottom: 5px;
+          text-decoration: none;
+          right 32px;
+        }
+        
     </style>
 </head>
 
@@ -121,6 +129,10 @@
         <h1>Willkommen in Budapest</h1>
     </header>
     <main>
+      <div class="Link-List"> <!-- Links für weitere Seiten -->
+      <a href="tagesplan.html">Plan für 3 Tage Budapest</a>
+      </div>
+      <div></div>
         <div class="menu-icon" onclick="toggleMenu()">
             <div></div>
             <div></div>
@@ -155,7 +167,7 @@
 
         <!-- Tabelle mit wichtigen Orten -->
         <table>
-            <caption><h2>Wichtige Orte</h2></caption>
+            <caption><h2>Wichtige Orte in Budapest</h2></caption>
             <thead>
                 <tr>
                     <th>Lage</th>
