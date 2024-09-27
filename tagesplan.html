@@ -1,330 +1,180 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budapest Reiseplan</title>
+    <title>Budapest Tagesplan</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #ffffff;
         }
+
         header {
-            background-color: #00843D; /* Dunkelgrün - Ungarische Flagge */
+            background-color: #CE2939;
             color: white;
-            padding: 20px;
             text-align: center;
-            border-bottom: 5px solid #CE1126; /* Rot - Ungarische Flagge */
+            padding: 1rem;
         }
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
+
+        section {
+            padding: 1rem;
+            margin-bottom: 2rem;
         }
-        .container {
-            width: 90%;
-            margin: 30px auto;
-        }
-        h2 {
-            color: #CE1126; /* Rot - Ungarische Flagge */
-            border-bottom: 3px solid #00843D;
-            padding-bottom: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 40px;
-            background-color: white;
-        }
-        table th {
-            background-color: #CE1126; /* Rot */
+
+        .day-title {
+            background-color: #468847;
             color: white;
             padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 1.2rem;
         }
-        table td {
-            border: 1px solid #ddd;
+
+        .schedule {
+            border: 2px solid #CE2939;
+            border-radius: 8px;
             padding: 10px;
-            text-align: left;
-            background-color: #fff;
         }
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
+
+        .schedule h3 {
+            color: #CE2939;
+            margin-top: 0;
         }
-        table tr:hover {
-            background-color: #f8f9fa;
+
+        .schedule-item {
+            border-bottom: 1px solid #CE2939;
+            padding: 10px 0;
         }
-        a {
-            color: #00843D; /* Grün */
-            text-decoration: none;
+
+        .schedule-item:last-child {
+            border-bottom: none;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .schedule-item h4 {
+            color: #468847;
+            margin: 0;
         }
+
+        .info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         footer {
-            background-color: #00843D; /* Dunkelgrün */
+            background-color: #CE2939;
             color: white;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-            border-top: 5px solid #CE1126; /* Rot */
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
-        footer p {
-            margin: 0;
+
+        .info span {
+            display: block;
+            font-weight: bold;
         }
-        @media (max-width: 768px) {
-            table, th, td {
-                display: block;
-                width: 100%;
-            }
-            th {
-                background-color: #CE1126;
-            }
-            td {
-                background-color: #f4f4f4;
-                margin-bottom: 10px;
-            }
-        }
+
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>Budapest Reiseplan</h1>
+    </header>
 
-<header>
-    <h1>Budapest Reiseplan (01.10.2024 - 03.10.2024)</h1>
-</header>
+    <!-- Tag 1 -->
+    <section>
+        <div class="day-title">Budapest Tag 1 - Pest-Seite | 01.10.2024</div>
+        <div class="schedule">
+            <div class="schedule-item">
+                <h3>15:00 - Hotel Roombach</h3>
+                <p class="info">Verkehrsmittel: Zu Fuß | Reisezeit: 5 Minuten</p>
+            </div>
+            <div class="schedule-item">
+                <h3>15:05 - Synagoge der Dohanystraße</h3>
+                <p class="info">Aufenthalt: 30 Minuten | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>16:50 - Wenkheim Palache</h3>
+                <p class="info">Aufenthalt: 30 Minuten | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>17:25 - Große Markthalle</h3>
+                <p class="info">Aufenthalt: 15 Minuten | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>18:00 - Cinema Mystica</h3>
+                <p class="info">Aufenthalt: 30 Minuten | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>19:30 - Restaurant Spinoza</h3>
+                <p class="info">Aufenthalt: 2,5 Stunden</p>
+            </div>
+        </div>
+    </section>
 
-<div class="container">
-    <h2>Dienstag, 01.10.2024</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Uhrzeit</th>
-                <th>Sehenswürdigkeit</th>
-                <th>Verkehrsmittel</th>
-                <th>Haltestellen</th>
-                <th>Besuchszeit</th>
-                <th>Bemerkungen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>15:00</td>
-                <td>Abfahrt vom Hotel Rombach</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>15:10</td>
-                <td>Große Markthalle Budapest</td>
-                <td>Zu Fuß (10 Minuten)</td>
-                <td>-</td>
-                <td>1 Stunde</td>
-                <td>Historischer Markt</td>
-            </tr>
-            <tr>
-                <td>16:15</td>
-                <td>Felsenkirche</td>
-                <td>Zu Fuß (15 Minuten)</td>
-                <td>-</td>
-                <td>45 Minuten</td>
-                <td>Eindrucksvolle Höhlenkirche</td>
-            </tr>
-            <tr>
-                <td>17:15</td>
-                <td>Sikló Standseilbahn</td>
-                <td>Zu Fuß (10 Minuten)</td>
-                <td>-</td>
-                <td>30 Minuten</td>
-                <td>Standseilbahn zur Burg</td>
-            </tr>
-            <tr>
-                <td>17:50</td>
-                <td>Burgpalast</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>-</td>
-                <td>1 Stunde</td>
-                <td>Fantastischer Ausblick</td>
-            </tr>
-            <tr>
-                <td>19:00</td>
-                <td>Gozsdu udvar (Restaurant)</td>
-                <td>Bus Linie 16 (15 Minuten)</td>
-                <td>Clark Ádám tér / Deák Ferenc tér</td>
-                <td>Abendessen</td>
-                <td>Moderne Gastronomie</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Tag 2 -->
+    <section>
+        <div class="day-title">Budapest Tag 2 - Pest und Buda-Seite | 02.10.2024</div>
+        <div class="schedule">
+            <div class="schedule-item">
+                <h3>09:00 - Abfahrt vom Hotel Rombach</h3>
+                <p class="info">Verkehrsmittel: M2 nach Kossuth Lajos tér | Reisezeit: 15 Minuten</p>
+            </div>
+            <div class="schedule-item">
+                <h3>09:15 - Parlamentsgebäude</h3>
+                <p class="info">Aufenthalt: 1,5 Stunden | Reservierter Besuch um 10:00 Uhr</p>
+            </div>
+            <div class="schedule-item">
+                <h3>11:45 - Schuhe am Donauufer</h3>
+                <p class="info">Aufenthalt: 10 Minuten | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>12:15 - St. Stephans-Basilika</h3>
+                <p class="info">Aufenthalt: 45 Minuten | Verkehrsmittel: Bus 16, 105, 178</p>
+            </div>
+            <div class="schedule-item">
+                <h3>18:00 - Schifffahrt auf der Donau</h3>
+                <p class="info">Dauer: 1,5 Stunden | <a href="https://legenda.hu/de/fahrplan" target="_blank">Ticket Info</a></p>
+            </div>
+            <div class="schedule-item">
+                <h3>20:00 - Restaurant N28</h3>
+                <p class="info">Verkehrsmittel: Zu Fuß</p>
+            </div>
+        </div>
+    </section>
 
-    <h2>Mittwoch, 02.10.2024</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Uhrzeit</th>
-                <th>Sehenswürdigkeit</th>
-                <th>Verkehrsmittel</th>
-                <th>Haltestellen</th>
-                <th>Besuchszeit</th>
-                <th>Bemerkungen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>09:00</td>
-                <td>Abfahrt vom Hotel Rombach</td>
-                <td>Zu Fuß (15 Minuten)</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>10:00</td>
-                <td>Parlamentsgebäude</td>
-                <td>-</td>
-                <td>-</td>
-                <td>1 Stunde 30 Minuten</td>
-                <td>Reservierter Besuch</td>
-            </tr>
-            <tr>
-                <td>11:45</td>
-                <td>Schuhe am Donauufer</td>
-                <td>Zu Fuß (10 Minuten)</td>
-                <td>-</td>
-                <td>20 Minuten</td>
-                <td>Denkmal am Ufer</td>
-            </tr>
-            <tr>
-                <td>12:15</td>
-                <td>Matthiaskirche</td>
-                <td>Straßenbahn Linie 19 (15 Minuten)</td>
-                <td>Jászai Mari tér / Halászbástya</td>
-                <td>45 Minuten</td>
-                <td>Historische Kirche</td>
-            </tr>
-            <tr>
-                <td>13:15</td>
-                <td>Fischerbastei</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>-</td>
-                <td>1 Stunde</td>
-                <td>Panoramablick</td>
-            </tr>
-            <tr>
-                <td>14:30</td>
-                <td>St. Stephans-Basilika</td>
-                <td>Bus Linie 16 (15 Minuten)</td>
-                <td>Halászbástya / Deák Ferenc tér</td>
-                <td>1 Stunde</td>
-                <td>Wichtige Kirche</td>
-            </tr>
-            <tr>
-                <td>18:00</td>
-                <td>Schifffahrt auf der Donau</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>Legenda Anlegestelle, Petőfi tér</td>
-                <td>1 Stunde 30 Minuten</td>
-                <td><a href="https://legenda.hu/de/fahrplan" target="_blank">Schifffahrtsplan</a></td>
-            </tr>
-            <tr>
-                <td>20:00</td>
-                <td>Restaurant N28</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>-</td>
-                <td>Abendessen</td>
-                <td>Gemütliches Restaurant</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Tag 3 -->
+    <section>
+        <div class="day-title">Budapest Tag 3 - Pest-Seite | 03.10.2024</div>
+        <div class="schedule">
+            <div class="schedule-item">
+                <h3>10:00 - Abfahrt vom Hotel Rombach</h3>
+                <p class="info">Verkehrsmittel: U-Bahn M1 nach Bajza utca</p>
+            </div>
+            <div class="schedule-item">
+                <h3>10:15 - Heldenplatz</h3>
+                <p class="info">Aufenthalt: 10 Minuten | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>10:30 - Széchenyi Therme</h3>
+                <p class="info">Aufenthalt: 2,5 Stunden | Verkehrsmittel: Zu Fuß</p>
+            </div>
+            <div class="schedule-item">
+                <h3>14:00 - Light Art Museum</h3>
+                <p class="info">Aufenthalt: 1 Stunde | Verkehrsmittel: Bus 72</p>
+            </div>
+        </div>
+    </section>
 
-    <h2>Donnerstag, 03.10.2024</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Uhrzeit</th>
-                <th>Sehenswürdigkeit</th>
-                <th>Verkehrsmittel</th>
-                <th>Haltestellen</th>
-                <th>Besuchszeit</th>
-                <th>Bemerkungen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>09:00</td>
-                <td>Abfahrt vom Hotel Rombach</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>09:15</td>
-                <td>Ungarische Staatsoper</td>
-                <td>Zu Fuß (15 Minuten)</td>
-                <td>-</td>
-                <td>45 Minuten</td>
-                <td>Opernhausbesuch</td>
-            </tr>
-            <tr>
-                <td>10:15</td>
-                <td>Dohány Synagoge</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>-</td>
-                <td>1 Stunde</td>
-                <td>Größte Synagoge Europas</td>
-            </tr>
-            <tr>
-                <td>11:30</td>
-                <td>Heldenplatz</td>
-                <td>U-Bahn M1 (10 Minuten)</td>
-                <td>Deák Ferenc tér / Hősök tere</td>
-                <td>30 Minuten</td>
-                <td>Monumentaler Platz</td>
-            </tr>
-            <tr>
-                <td>12:15</td>
-                <td>Burg Vajdahunyad</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>-</td>
-                <td>1 Stunde</td>
-                <td>Historisches Schloss</td>
-            </tr>
-            <tr>
-                <td>13:30</td>
-                <td>Széchenyi Therme</td>
-                <td>Zu Fuß (5 Minuten)</td>
-                <td>-</td>
-                <td>1 Stunde 30 Minuten</td>
-                <td>Thermalbäder</td>
-            </tr>
-            <tr>
-                <td>15:15</td>
-                <td>Wenckheim Palace</td>
-                <td>U-Bahn M1 (15 Minuten)</td>
-                <td>Hősök tere / Kálvin tér</td>
-                <td>1 Stunde</td>
-                <td>Architektonisches Meisterwerk</td>
-            </tr>
-            <tr>
-                <td>17:00</td>
-                <td>Restaurant Gozsdu udvar</td>
-                <td>U-Bahn M1 + Zu Fuß (15 Minuten)</td>
-                <td>Kálvin tér / Deák Ferenc tér</td>
-                <td>Abendessen</td>
-                <td>Moderne Gastronomie</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<footer>
-    <p>Budapest Reiseplan 2024 &copy; Alle Rechte vorbehalten</p>
-</footer>
-
+    <footer>
+        &copy; 2024 Budapest Tagesplan
+    </footer>
 </body>
+
 </html>
